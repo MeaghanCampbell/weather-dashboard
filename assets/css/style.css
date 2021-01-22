@@ -1,3 +1,21 @@
 body {
     font-family: Montserrat;
 }
+h2 {
+    font-size: 20px;
+}
+button {
+    border: none;
+    padding: 4px 10px;
+    color: #244248;
+    background-color: lightblue;
+}
+button:hover {
+    background-color: #244248;
+    color: lightblue;
+}
+.today {
+    border-radius: 5px;
+    border: 1px solid lightgray;
+}
+
