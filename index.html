@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">    
         <link rel="stylesheet" href="./assets/css/style.css">
         <title>Weather Dashboard</title>
     </head>
@@ -21,7 +22,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-xs-12 bg-light p-3">
-                    <h2>Search for a City:</h2>
+                    <h2 class="city-search">Search for a City:</h2>
                     <form class="search-bar" id="search">
                         <input type="text" id="search-query"/>
                         <button id='submit-button'>Search</button>
@@ -32,9 +33,12 @@
                 </div> 
                 <div class="col-8 p-3">
                     <div class="today p-2" id="today-weather">
-                        <h2 id='city-name'></h2>
+                        <h2 id='city-name'><span id='date'></span></h2>
                         <div id="display-current-weather">
-                            
+                            <p class='weather-data'>Temperature: <span class='temp' id='temperature'></span></p>
+                            <p class='weather-data'>Humidity: <span class='humi' id='humidity'></span></p>
+                            <p class='weather-data'>Wind Speed: <span class='wind' id='wind-speed'></span></p>
+                            <p class='weather-data'>UV Index: <span class='uv' id='uv-index'></span></p>
                         </div>
                     </div>
                     <div class="5-day p-2" id="5-day-weather">
@@ -46,7 +50,6 @@
                 </div>
             </div>  
           </div>
-          
         <script src="./assets/js/script.js"></script>
     </body>
 </html>

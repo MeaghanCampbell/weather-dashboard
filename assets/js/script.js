@@ -11,7 +11,10 @@ var weatherContainerEl = document.querySelector('#today-weather')
 var weatherCityNameEl = document.querySelector('#city-name')
 
 //display city weather
-var weatherContentEl = document.querySelector('#display-current-weather')
+var showTempEl = document.querySelector('#temperature')
+var showHumidityEl = document.querySelector('#humidity')
+var showWindSpeedEl = document.querySelector('#wind-speed')
+var showUVIndexEl = document.querySelector('#uv-index')
 
 //submit search 
 var submitSearch = function(event) {
@@ -33,17 +36,20 @@ var getWeatherData = function(cityName) {
 
     var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=ae1a6f308d226ee08bc8e5c387cf867e'
 
+
     fetch(apiUrl).then(function(response) {
-        response.json().then(function(data) {
-            console.log(response.data[0].name);
-        })
+        return response.json()
+    }).then(function(data) {  
+        displayWeatherData(data);
     })
-    
-    /* weatherCityNameEl.innerHTML = '';
-    weatherContentEl.innerHTML = '';
-    
-    weatherCityNameEl.setAttribute('src', response.name[0]);
-    }) */
+}
+
+var displayWeatherData = function(data) {
+
+    weatherCityNameEl.textContent = data.name
+    showTempEl.textContent = Math.floor((data.main.temp - 273.15) * (9/5) + 32) + '  \u00B0 F'
+    showHumidityEl.textContent = data.main.humidity + '%'
+    showWindSpeedEl.textContent = data.wind.speed + ' MPH'
 }
 
 // listen for city name search button click

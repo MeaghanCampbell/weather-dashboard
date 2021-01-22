@@ -1,7 +1,7 @@
 body {
     font-family: Montserrat;
 }
-h2 {
+.city-search {
     font-size: 20px;
 }
 button {
@@ -17,5 +17,15 @@ button:hover {
 .today {
     border-radius: 5px;
     border: 1px solid lightgray;
+    line-height: 3;
+}
+.weather-data {
+    font-weight: bold;
+}
+.temp,
+.humi,
+.wind,
+.uv {
+    font-weight: lighter;
 }
 
