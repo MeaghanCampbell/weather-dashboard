@@ -62,6 +62,9 @@ var displayWeatherData = function(data) {
     var displayDate = document.querySelector('#date')
     displayDate.textContent = '(' + currentDateEl + ')'
 
+    weatherIconEl.setAttribute('src', 'https://openweathermap.org/img/wn/' + data.weather[0].icon + '.png')
+    weatherIconEl.setAttribute('alt', 'rain')
+
     weatherCityNameEl.textContent = data.name
     showTempEl.textContent = Math.floor((data.main.temp - 273.15) * (9/5) + 32) + '  \u00B0 F'
     showHumidityEl.textContent = data.main.humidity + '%'
@@ -96,7 +99,6 @@ var displayUVIndex = function(data) {
 }
 
 var display5DayWeather = function(data) {
-    console.log(data.daily[1].humidity)
 
     displayWeatherContainer.innerHTML = ''
     
@@ -138,8 +140,22 @@ var display5DayWeather = function(data) {
         dayWeatherHum.innerHTML = 'Humidity: ' + data.daily[i].humidity + '%'
         dayWeatherVariables[i].appendChild(dayWeatherHum)
 
+        var weatherIcon = document.createElement('img')
+        weatherIcon.setAttribute('src', 'https://openweathermap.org/img/wn/' + data.daily[i].weather[0].icon + '.png')
+        weatherIcon.setAttribute('alt', 'rain')
+        dayWeatherVariables[i].appendChild(weatherIcon)
     }
 }
+
+var searchHistory = function(event) {
+    
+    // get value from city name input
+    var cityName = document.querySelector('#search-history-item')
+    console.log(cityName)
+}
+
+// listen for search history click
+searchHistEl.addEventListener('click', searchHistory)
 
 // listen for city name search button click
 cityFormEl.addEventListener('submit', submitSearch);
