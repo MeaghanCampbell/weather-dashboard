@@ -17,6 +17,12 @@ var showHumidityEl = document.querySelector('#humidity')
 var showWindSpeedEl = document.querySelector('#wind-speed')
 var showUVIndexEl = document.querySelector('#uv-index')
 
+// recent searches container
+var searchHistEl = document.querySelector('#search-history')
+
+//display future weather
+var displayWeatherContainer = document.querySelector('#display-future-weather')
+
 //submit search 
 var submitSearch = function(event) {
     event.preventDefault();
@@ -27,6 +33,11 @@ var submitSearch = function(event) {
     if (cityName) {
         getWeatherData(cityName);
         cityFormInputEl.value = "";
+        var searchHistItemEl = document.createElement('li')
+        searchHistItemEl.textContent = cityName
+        searchHistItemEl.classList.add('search-history-item')
+        searchHistEl.appendChild(searchHistItemEl)
+        searchHistEl.insertBefore(searchHistItemEl, searchHistEl.firstChild);
     } else {
         alert('Please enter a valid city name')
     }
@@ -64,6 +75,7 @@ var displayWeatherData = function(data) {
         return response.json()
     }).then(function(data) {  
         displayUVIndex(data)
+        display5DayWeather(data)
     })
 }
 
@@ -83,6 +95,51 @@ var displayUVIndex = function(data) {
 
 }
 
+var display5DayWeather = function(data) {
+    console.log(data.daily[1].humidity)
+
+    displayWeatherContainer.innerHTML = ''
+    
+    var day0Weather = document.createElement('ul')
+    day0Weather.innerHTML = moment().add(1, 'days').format('M/D/Y')
+    day0Weather.classList.add('future-weather-data')
+    displayWeatherContainer.appendChild(day0Weather)
+
+    var day1Weather = document.createElement('ul')
+    day1Weather.innerHTML = moment().add(2, 'days').format('M/D/Y')
+    day1Weather.classList.add('future-weather-data')
+    displayWeatherContainer.appendChild(day1Weather)
+
+    var day2Weather = document.createElement('ul')
+    day2Weather.innerHTML = moment().add(3, 'days').format('M/D/Y')
+    day2Weather.classList.add('future-weather-data')
+    displayWeatherContainer.appendChild(day2Weather)
+
+    var day3Weather = document.createElement('ul')
+    day3Weather.innerHTML = moment().add(4, 'days').format('M/D/Y')
+    day3Weather.classList.add('future-weather-data')
+    displayWeatherContainer.appendChild(day3Weather)
+
+    var day4Weather = document.createElement('ul')
+    day4Weather.innerHTML = moment().add(5, 'days').format('M/D/Y')
+    day4Weather.classList.add('future-weather-data')
+    displayWeatherContainer.appendChild(day4Weather)
+
+    var dayWeatherVariables = [day0Weather, day1Weather, day2Weather, day3Weather, day4Weather]
+
+
+    for (var i = 0; i < dayWeatherVariables.length; i++) {
+
+        var dayWeatherTemp = document.createElement('li')
+        dayWeatherTemp.innerHTML = 'Temp: ' + Math.floor((data.daily[i].temp.day - 273.15) * (9/5) + 32) + '  \u00B0 F'
+        dayWeatherVariables[i].appendChild(dayWeatherTemp)
+        
+        var dayWeatherHum = document.createElement('li')
+        dayWeatherHum.innerHTML = 'Humidity: ' + data.daily[i].humidity + '%'
+        dayWeatherVariables[i].appendChild(dayWeatherHum)
+
+    }
+}
 
 // listen for city name search button click
 cityFormEl.addEventListener('submit', submitSearch);

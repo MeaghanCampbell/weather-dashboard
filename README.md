@@ -18,4 +18,3 @@ https://meaghancampbell.github.io/weather-dashboard/
 
 # Screenshot
 
-
