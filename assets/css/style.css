@@ -29,3 +29,26 @@ button:hover {
     font-weight: lighter;
 }
 
+.low {
+    background-color: green;
+    border-radius: 5px;
+    padding: 4px 6px;
+    color: white;
+}
+.mod {
+    background-color: yellow;
+    border-radius: 5px;
+    padding: 4px 6px;
+}
+.high {
+    background-color: orange;
+    border-radius: 5px;
+    padding: 4px 6px;
+}
+.very-high {
+    background-color: red;
+    border-radius: 5px;
+    padding: 4px 6px;
+    color: white;
+}
+

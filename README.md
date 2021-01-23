@@ -16,9 +16,6 @@ THEN I am again presented with current and future conditions for that city
 # Link
 https://meaghancampbell.github.io/weather-dashboard/
 
-# Open Weather API docs
-'api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=ae1a6f308d226ee08bc8e5c387cf867e'
-
 # Screenshot
 
 

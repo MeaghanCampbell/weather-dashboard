@@ -6,8 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">    
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&wght@800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./assets/css/style.css">
         <title>Weather Dashboard</title>
     </head>
@@ -33,7 +32,11 @@
                 </div> 
                 <div class="col-8 p-3">
                     <div class="today p-2" id="today-weather">
-                        <h2 id='city-name'><span id='date'></span></h2>
+                        <div class='d-flex flex-row justify-content-start' id='title'>
+                            <h2 id='city-name'></h2>
+                            <h3 id='date'></h3>
+                            <div id='icon'></div>
+                        </div>
                         <div id="display-current-weather">
                             <p class='weather-data'>Temperature: <span class='temp' id='temperature'></span></p>
                             <p class='weather-data'>Humidity: <span class='humi' id='humidity'></span></p>
@@ -50,6 +53,7 @@
                 </div>
             </div>  
           </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
         <script src="./assets/js/script.js"></script>
     </body>
 </html>
