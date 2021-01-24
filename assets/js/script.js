@@ -155,8 +155,8 @@ var display5DayWeather = function(data) {
 var searchHistory = function(event) {
     
     // get value from city name input
-    var cityName = document.querySelector('#search-hist-city')
-    console.log(cityName.textContent)
+    var cityName = event.target.textContent
+    getWeatherData(cityName)
 
   }
 
