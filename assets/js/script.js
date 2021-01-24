@@ -171,7 +171,7 @@ var loadTasks = function() {
 
     localStorage.getItem('city');
     
-    searchHistoryCities = JSON.parse(localStorage.getItem('city'));
+    searchHistoryCities = JSON.parse(localStorage.getItem('city')) || [];
 
     renderCities();
 
@@ -188,11 +188,10 @@ var renderCities = function() {
     }
 }
 
-if (searchHistoryCities = []) {
-    cityFormEl.addEventListener('submit', submitSearch);
-} else {
-    loadTasks();
-}
+loadTasks();
+
+cityFormEl.addEventListener('submit', submitSearch);
+
 
 // listen for search history click
 searchHistEl.addEventListener('click', searchHistory)
