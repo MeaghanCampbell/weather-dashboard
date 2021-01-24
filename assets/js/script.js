@@ -37,10 +37,10 @@ var submitSearch = function(event) {
         getWeatherData(cityName);
         cityFormInputEl.value = "";
         searchHistoryCities.push(cityName)
+        saveTasks();
         var searchHistItemEl = document.createElement('li')
         searchHistItemEl.textContent = cityName
         searchHistItemEl.classList.add('search-history-item')
-        searchHistItemEl.setAttribute('id', 'search-hist-city')
         searchHistEl.appendChild(searchHistItemEl)
         searchHistEl.insertBefore(searchHistItemEl, searchHistEl.firstChild);
     } else {
@@ -137,6 +137,11 @@ var display5DayWeather = function(data) {
 
     for (var i = 0; i < dayWeatherVariables.length; i++) {
 
+        var weatherIcon = document.createElement('img')
+        weatherIcon.setAttribute('src', 'https://openweathermap.org/img/wn/' + data.daily[i].weather[0].icon + '.png')
+        weatherIcon.setAttribute('alt', 'rain')
+        dayWeatherVariables[i].appendChild(weatherIcon)
+
         var dayWeatherTemp = document.createElement('li')
         dayWeatherTemp.innerHTML = 'Temp: ' + Math.floor((data.daily[i].temp.day - 273.15) * (9/5) + 32) + '  \u00B0 F'
         dayWeatherVariables[i].appendChild(dayWeatherTemp)
@@ -144,11 +149,6 @@ var display5DayWeather = function(data) {
         var dayWeatherHum = document.createElement('li')
         dayWeatherHum.innerHTML = 'Humidity: ' + data.daily[i].humidity + '%'
         dayWeatherVariables[i].appendChild(dayWeatherHum)
-
-        var weatherIcon = document.createElement('img')
-        weatherIcon.setAttribute('src', 'https://openweathermap.org/img/wn/' + data.daily[i].weather[0].icon + '.png')
-        weatherIcon.setAttribute('alt', 'rain')
-        dayWeatherVariables[i].appendChild(weatherIcon)
     }
 }
 
@@ -159,6 +159,22 @@ var searchHistory = function(event) {
     getWeatherData(cityName)
 
   }
+
+// save in local storage
+var saveTasks = function() {
+
+    localStorage.setItem("city", JSON.stringify(searchHistoryCities));
+
+    loadTasks();
+}
+
+var loadTasks = function() {
+
+    localStorage.getItem('city');
+
+    searchHistoryCities = JSON.parse(localStorage.getItem('city'));
+
+}
 
 // listen for search history click
 searchHistEl.addEventListener('click', searchHistory)
