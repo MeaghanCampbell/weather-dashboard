@@ -23,6 +23,9 @@ var searchHistEl = document.querySelector('#search-history')
 //display future weather
 var displayWeatherContainer = document.querySelector('#display-future-weather')
 
+// array of search history
+searchHistoryCities = []
+
 //submit search 
 var submitSearch = function(event) {
     event.preventDefault();
@@ -33,9 +36,11 @@ var submitSearch = function(event) {
     if (cityName) {
         getWeatherData(cityName);
         cityFormInputEl.value = "";
+        searchHistoryCities.push(cityName)
         var searchHistItemEl = document.createElement('li')
         searchHistItemEl.textContent = cityName
         searchHistItemEl.classList.add('search-history-item')
+        searchHistItemEl.setAttribute('id', 'search-hist-city')
         searchHistEl.appendChild(searchHistItemEl)
         searchHistEl.insertBefore(searchHistItemEl, searchHistEl.firstChild);
     } else {
@@ -150,9 +155,10 @@ var display5DayWeather = function(data) {
 var searchHistory = function(event) {
     
     // get value from city name input
-    var cityName = document.querySelector('#search-history-item')
-    console.log(cityName)
-}
+    var cityName = document.querySelector('#search-hist-city')
+    console.log(cityName.textContent)
+
+  }
 
 // listen for search history click
 searchHistEl.addEventListener('click', searchHistory)
