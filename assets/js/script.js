@@ -165,22 +165,37 @@ var saveTasks = function() {
 
     localStorage.setItem("city", JSON.stringify(searchHistoryCities));
 
-    loadTasks();
 }
 
 var loadTasks = function() {
 
     localStorage.getItem('city');
-
+    
     searchHistoryCities = JSON.parse(localStorage.getItem('city'));
 
+    renderCities();
+
+}
+
+var renderCities = function() {
+
+    for (var i = 0; i < searchHistoryCities.length; i++) {
+        var searchHistItemEl = document.createElement('li')
+        searchHistItemEl.textContent = searchHistoryCities[i]
+        searchHistItemEl.classList.add('search-history-item')
+        searchHistEl.appendChild(searchHistItemEl)
+        searchHistEl.insertBefore(searchHistItemEl, searchHistEl.firstChild);
+    }
+}
+
+if (searchHistoryCities = []) {
+    cityFormEl.addEventListener('submit', submitSearch);
+} else {
+    loadTasks();
 }
 
 // listen for search history click
 searchHistEl.addEventListener('click', searchHistory)
-
-// listen for city name search button click
-cityFormEl.addEventListener('submit', submitSearch);
 
 
 
